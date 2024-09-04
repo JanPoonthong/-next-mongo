@@ -99,7 +99,7 @@ export default function Home() {
       </div>
       <div className="border m-4 bg-slate-300 flex-1 w-64">
         <h1 className="text-2xl">Products ({products.length})</h1>
-        <ul class="list-disc ml-8">
+        <ul className="list-disc ml-8">
           {products.map &&
             products.map((p) => (
               <li key={p._id}>
