@@ -83,7 +83,7 @@ export default function Home() {
                 className="border border-black w-full"
               >
                 {category.map((c) => (
-                  <option value={c._id}>{c.name}</option>
+                  <option key={c._id} value={c._id}>{c.name}</option>
                 ))}
               </select>
             </div>
