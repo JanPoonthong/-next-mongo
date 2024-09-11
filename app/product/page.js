@@ -4,24 +4,26 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 
 export default function Home() {
+  const APIBASE = process.env.NEXT_PUBLIC_BASE_PATH
   const { register, handleSubmit } = useForm();
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
 
   async function fetchProducs() {
-    const data = await fetch("http://localhost:3000/api/product");
+    const data = await fetch(`${APIBASE}/api/product`);
     const p = await data.json();
     setProducts(p);
   }
 
   async function fetchCategory() {
-    const data = await fetch("http://localhost:3000/api/category");
+    const data = await fetch(`${APIBASE}/api/category`);
     const c = await data.json();
+    console.log(c)
     setCategory(c);
   }
 
   const createProduct = (data) => {
-    fetch("http://localhost:3000/api/product", {
+    fetch(`${APIBASE}/api/product`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
