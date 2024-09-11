@@ -14,7 +14,8 @@ const articleSchema = new mongoose.Schema({
     // required: true,
   },
 });
-console.log("Models",mongoose.models)
-const Article = mongoose.models.article || mongoose.model("article", articleSchema);
+console.log("Models", mongoose.models);
+const Article =
+  mongoose.models.article || mongoose.model("article", articleSchema);
 
-export default Article
+export default Article;

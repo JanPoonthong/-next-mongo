@@ -9,9 +9,9 @@ export default function Home() {
 
   console.log(`${APIBASE}/api/category`);
   const [category, setCategory] = useState([]);
-  const [updateForm, setUpdateForm] = useState(false)
+  const [updateForm, setUpdateForm] = useState(false);
   const { register, handleSubmit, setValue, reset } = useForm();
-  const [idToBeUpdated, setIdToBeUpdated] = useState()
+  const [idToBeUpdated, setIdToBeUpdated] = useState();
 
   async function fetchCategory() {
     const data = await fetch(`${APIBASE}/api/category`);
@@ -24,7 +24,7 @@ export default function Home() {
   }, []);
 
   function createOrUpdateCategory(data) {
-    data = {...data, _id: idToBeUpdated}
+    data = { ...data, _id: idToBeUpdated };
     if (updateForm) {
       // update category
       fetch(`${APIBASE}/api/category`, {
@@ -34,7 +34,7 @@ export default function Home() {
         },
         body: JSON.stringify(data),
       }).then(() => fetchCategory());
-      return
+      return;
     }
 
     console.log(APIBASE);
@@ -49,10 +49,10 @@ export default function Home() {
 
   function startEdit(category) {
     console.debug(category);
-    setIdToBeUpdated(category._id)
+    setIdToBeUpdated(category._id);
     // setValue("name", category.name)
-    reset({name: category.name})
-    setUpdateForm(true)
+    reset({ name: category.name });
+    setUpdateForm(true);
   }
 
   return (
@@ -81,17 +81,19 @@ export default function Home() {
             <div className="col-span-2">
               <input
                 type="submit"
-                value={updateForm? "Update": "Add"}
+                value={updateForm ? "Update" : "Add"}
                 className="bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
               />
             </div>
             <div className="col-span-2">
               {updateForm && (
                 <button
-                type="submit"
-                onClick={() => setUpdateForm(false)}
-                className="bg-red-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
-              >Cancel</button>
+                  type="submit"
+                  onClick={() => setUpdateForm(false)}
+                  className="bg-red-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full"
+                >
+                  Cancel
+                </button>
               )}
             </div>
           </div>

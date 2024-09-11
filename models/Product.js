@@ -8,6 +8,7 @@ const productSchema = new mongoose.Schema({
   category: { type: mongoose.Schema.Types.ObjectId, ref: "category" },
 });
 
-const Product = mongoose.models.product || mongoose.model("product", productSchema);
+const Product =
+  mongoose.models.product || mongoose.model("product", productSchema);
 
 export default Product;
