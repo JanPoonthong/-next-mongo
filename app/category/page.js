@@ -5,6 +5,7 @@ import Link from "next/link";
 
 export default function Home() {
   const APIBASE = process.env.NEXT_PUBLIC_BASE_PATH
+  
   console.log(`${APIBASE}/api/category`)
   const [category, setCategory] = useState([]);
   const { register, handleSubmit } = useForm();
