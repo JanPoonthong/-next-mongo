@@ -3,6 +3,12 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
+import { DataGrid } from "@mui/x-data-grid";
+
+const columns = [
+  { field: "name", headerName: "Name", width: 200 },
+  { field: "order", headerName: "Order", width: 200 },
+];
 
 export default function Home() {
   const APIBASE = process.env.NEXT_PUBLIC_BASE_PATH;
@@ -12,11 +18,19 @@ export default function Home() {
   const [updateForm, setUpdateForm] = useState(false);
   const { register, handleSubmit, setValue, reset } = useForm();
   const [idToBeUpdated, setIdToBeUpdated] = useState();
+  const [categoryList, setCategoryList] = useState();
 
   async function fetchCategory() {
     const data = await fetch(`${APIBASE}/api/category`);
     const c = await data.json();
     setCategory(c);
+    const c2 = c.map((category) => {
+      return {
+        ...category,
+        id: category._id,
+      };
+    });
+    setCategoryList(c2);
   }
 
   useEffect(() => {
@@ -118,6 +132,7 @@ export default function Home() {
           </div>
         ))}
       </div>
+      <DataGrid rows={categoryList} columns={columns} />
     </main>
   );
 }
